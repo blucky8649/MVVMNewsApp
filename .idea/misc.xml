@@ -3,9 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/bluck/AndroidStudioProjects/MVVMNewsApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.19" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MVVMNewsApp/app/src/main/res/drawable/ic_all_news.xml" value="0.194" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MVVMNewsApp/app/src/main/res/drawable/ic_breaking_news.xml" value="0.194" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MVVMNewsApp/app/src/main/res/drawable/ic_favorite.xml" value="0.194" />
+        <entry key="..\:/Users/bluck/AndroidStudioProjects/MVVMNewsApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.19" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MVVMNewsApp/app/src/main/res/layout/activity_main.xml" value="0.1403985507246377" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MVVMNewsApp/app/src/main/res/layout/activity_news.xml" value="0.40293453724604966" />
         <entry key="..\:/Users/bluck/AndroidStudioProjects/MVVMNewsApp/app/src/main/res/layout/fragment_article.xml" value="0.17135416666666667" />
