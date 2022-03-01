@@ -18,6 +18,7 @@ import com.example.mvvmnewsapp.adapters.NewsAdapter
 import com.example.mvvmnewsapp.ui.NewsActivity
 import com.example.mvvmnewsapp.ui.NewsViewModel
 import com.example.mvvmnewsapp.databinding.FragmentBreakingNewsBinding
+import com.example.mvvmnewsapp.util.Constants.Companion.COUNTRY
 import com.example.mvvmnewsapp.util.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.mvvmnewsapp.util.Resource
 
@@ -107,7 +108,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
                     isTotalMoreThanVisible && isScrolling
             if (shouldPaginate) {
-                viewModel.getBreakingNews("us")
+                viewModel.getBreakingNews(COUNTRY)
                 isScrolling = false
             }
         }

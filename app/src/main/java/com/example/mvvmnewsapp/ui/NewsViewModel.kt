@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.mvvmnewsapp.models.Article
 import com.example.mvvmnewsapp.models.NewsResponse
 import com.example.mvvmnewsapp.repository.NewsRepository
+import com.example.mvvmnewsapp.util.Constants.Companion.COUNTRY
 import com.example.mvvmnewsapp.util.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -22,7 +23,7 @@ class NewsViewModel(
     var searchNewsResponse: NewsResponse? = null
 
     init {
-        getBreakingNews("us")
+        getBreakingNews(COUNTRY)
     }
 
     fun getBreakingNews(countryCode: String) = viewModelScope.launch {
