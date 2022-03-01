@@ -1,5 +1,6 @@
 package com.example.mvvmnewsapp.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.OnReceiveContentListener
 import android.view.View
@@ -62,13 +63,15 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         val article = differ.currentList[position]
         holder.binding.apply {
             Glide.with(root).load(article.urlToImage).into(ivArticleImage)
-            tvSource.text = article.source.name
+            tvSource.text = article.source?.name
             tvTitle.text = article.title
             tvDescription.text = article.description
             tvPublishedAt.text = article.publishedAt
-            setOnItemClickListener {
+            holder.itemView.setOnClickListener {
                 // 리스너가 null 이 아닐 경우에만 article 을 반환
+                Log.d("Lee", "${article}}")
                 onItemClickListener?.let { it(article) }
+
             }
         }
     }

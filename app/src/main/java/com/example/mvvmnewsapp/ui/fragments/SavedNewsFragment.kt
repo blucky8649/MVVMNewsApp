@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mvvmnewsapp.R
+import com.example.mvvmnewsapp.adapters.NewsAdapter
 import com.example.mvvmnewsapp.databinding.FragmentArticleBinding
 import com.example.mvvmnewsapp.databinding.FragmentSavedNewsBinding
 import com.example.mvvmnewsapp.ui.NewsActivity
@@ -16,11 +19,29 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
     private val binding get() = _binding!!
 
     lateinit var viewModel: NewsViewModel
+    lateinit var newsAdapter: NewsAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as NewsActivity).viewModel
+        setupReyclerView()
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_savedNewsFragment_to_articleNewsFragment,
+                bundle
+            )
+        }
     }
-
+    private fun setupReyclerView() {
+        newsAdapter = NewsAdapter()
+        binding.rvSavedNews.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
