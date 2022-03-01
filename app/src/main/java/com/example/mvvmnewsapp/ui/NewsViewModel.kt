@@ -15,9 +15,11 @@ class NewsViewModel(
 ) : ViewModel() {
     val breakingNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var breakingNewsPage = 1
+    var breakingNewsResponse: NewsResponse? = null
 
     val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var searchNewsPage = 1
+    var searchNewsResponse: NewsResponse? = null
 
     init {
         getBreakingNews("us")
@@ -39,7 +41,15 @@ class NewsViewModel(
     private fun handleBreakingNewsResponse(response: Response<NewsResponse>) : Resource<NewsResponse> {
         if (response.isSuccessful) {
             response.body()?.let { response ->
-                return Resource.Success(response)
+                breakingNewsPage++ // 스크롤을 내리면 다음 페이지의 기사들이 나올수 있도록 구현
+                if (breakingNewsResponse == null) {
+                    breakingNewsResponse = response
+                } else {
+                    val oldArticles = breakingNewsResponse?.articles
+                    val newArticles = response.articles
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(breakingNewsResponse ?: response)
             }
         }
         return Resource.Error(response.message())
@@ -48,7 +58,15 @@ class NewsViewModel(
     private fun handleSearchResponse(response: Response<NewsResponse>) : Resource<NewsResponse> {
         if (response.isSuccessful) {
             response.body()?.let { response ->
-                return Resource.Success(response)
+                searchNewsPage++
+                if (searchNewsResponse == null) {
+                    searchNewsResponse = response
+                } else {
+                    val oldArticles = searchNewsResponse?.articles
+                    val newArticles = response.articles
+                    oldArticles?.addAll(newArticles)
+                }
+                return Resource.Success(searchNewsResponse ?: response)
             }
         }
         return Resource.Error(response.message())

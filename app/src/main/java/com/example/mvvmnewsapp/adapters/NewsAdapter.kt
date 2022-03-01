@@ -69,7 +69,6 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             tvPublishedAt.text = article.publishedAt
             holder.itemView.setOnClickListener {
                 // 리스너가 null 이 아닐 경우에만 article 을 반환
-                Log.d("Lee", "${article}}")
                 onItemClickListener?.let { it(article) }
 
             }
