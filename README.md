@@ -46,10 +46,10 @@ https://newsapi.org/ 사이트의 뉴스api를 활용하여 만든 영어 뉴스
 var isLoading = false // 로딩중인가?
 var isLastPage = false // 마지막 페이지인가?
 var isScrolling = false // 스크롤중인가?
-```
-</br>
+```  
+  
 그러나 위 코드만으로는 다음 페이지를 로드하기위한 조건이 성립되지 않습니다. 무한 스크롤을 구현하기 위해서는 다음과 같은 조건들이 필요합니다.  
-
+  
 ```
 1) 데이터가 로딩중이 아니어야 한다.
 2) 현재 로드된 페이지가 마지막 페이지가 아니어야 한다.
@@ -57,8 +57,8 @@ var isScrolling = false // 스크롤중인가?
 4) 이제 처음 로드되는 데이터가 아니어야 한다. 
 5) 리사이클러뷰의 전체 항목의 수가 한 번에 로드되는 항목의 개수(20)보다 많이야 한다
 ```
-</br>
-따라서 리스너 안의 `onScrolled` 콜백 함수를 통해 현재 리사이클러뷰의 상태를 주기적으로 확인하고, Pagination 조건이 갖춰지면 다음 페이지를 불러올 수 있도록 코드를 구성했습니다.  
+  
+따라서 리스너 안의 `onScrolled` 콜백 함수를 통해 현재 리사이클러뷰의 상태를 주기적으로 확인하고, Pagination 조건이 갖춰지면 다음 페이지를 불러올 수 있도록 코드를 구성했습니다.    
 
 ```kotlin
 val scrollListener = object : RecyclerView.OnScrollListener() {
