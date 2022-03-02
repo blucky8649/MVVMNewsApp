@@ -125,3 +125,52 @@ private fun handleBreakingNewsResponse(response: Response<NewsResponse>) : Resou
     return Resource.Error(response.message())
 }
 ```
+</br>
+
+## 데이터 스와이프 삭제 및 복원기능 소개
+> onSwipe 콜백 함수를 활용한 데이터 삭제 및 복원
+<img src="https://user-images.githubusercontent.com/83625797/156368602-60c1c057-f278-4dab-afc6-8c4a2a6c7582.gif" width="300">
+
+
+`itemTouchHeler`의 `onSwife` 콜백함수를 활용하였습니다. **기존 데이터를 변수에 담아두고** 삭제 후 다시 복원하고 싶으면 **기존 데이터가 담긴 변수를 다시 DB에 삽입**하면 됩니다. 다음은 데이터 삭제 및 복원기능을 나타내는 콜백을 정의하는 함수입니다.
+```kotlin
+val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+    ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+    ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+) {
+    // override fun onMove() 생략..
+
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+        val position = viewHolder.adapterPosition
+        val article = newsAdapter.differ.currentList[position] //기존 데이터를 담아준다.
+        viewModel.deleteArticle(article) // 데이터 삭제
+        Snackbar.make(view, "Successfully deleted article", Snackbar.LENGTH_LONG).apply {
+            // 삭제 복원 기능 구현
+            setAction("Undo") {
+                viewModel.saveArticle(article) // 스낵바의 undo를 누르게 된다면, 기존 데이터를 다시 삽입한다.
+            }
+            show()
+        }
+    }
+}
+```
+</br>
+## 기사 키워드 검색기능 소개
+>EditText.addTextChangedListener 활용
+<img src ="https://user-images.githubusercontent.com/83625797/156368572-2e214826-fd36-4ed1-a21e-1a4ccc0d5677.gif" width = "500">
+위 활용 예제와 같이 `EditText`의 값이 변할 때마다 지속해서 결과값을 재요청해주어야 합니다. 따라서 `EditText`의 `addTextChangedListener`함수를 사용하였고, **데이터의 변경이 이루어 질때마다 새로운 뉴스 데이터를 요청**합니다.
+단, 잦은 입력으로 인한 과요청 상태를 방지하기 위해, 코루틴을 활용하여 5초간의 요청 딜레이를 주어 해당 문제를 해결합니다.
+```kotlin
+binding.etSearch.addTextChangedListener { editable ->
+    job?.cancel()
+    job = MainScope().launch {
+        delay(FIVE_SECONDS_DELEY) // 5초간의 비동기 딜레이
+        editable?.let {
+            if (editable.toString().isNotEmpty()) {
+                // 텍스트창이 비어있지 않는 한, 텍스트 변경이 이루어질 때 5초 간격으로 데이터를 요청한다.
+                viewModel.searchNews(editable.toString())
+            }
+        }
+    }
+}
+```
