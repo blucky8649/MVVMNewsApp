@@ -1,5 +1,5 @@
 # 영어 뉴스 앱 만들기
-https://newsapi.org/ 사이트의 api를 활용하여 만든 영어 뉴스 무료 구독 시스템입니다.
+https://newsapi.org/ 사이트의 뉴스api를 활용하여 만든 영어 뉴스 무료 구독 시스템입니다.
 
 ### Screen Shot
 |뉴스 탐색|기사 저장|기사 삭제 및 복원|키워드 검색|
@@ -28,7 +28,7 @@ https://newsapi.org/ 사이트의 api를 활용하여 만든 영어 뉴스 무�
 
 
 ## 아키텍쳐
-아키텍쳐로 다음구조와 같은 MVVM(Model-View-ViewModel)패턴을 사용하였습니다.
+아키텍쳐로 `MVVM(Model-View-ViewModel)`패턴을 사용하였습니다.
 ![image](https://user-images.githubusercontent.com/83625797/156362905-96f8a59f-9026-4023-85c0-36f6034b966f.png)
 * `Activity/Fragment`: 1 액티비티 4프래그먼트구성으로, **네비게이션 컴포넌트를 이용**하여 관리하였습니다.
 * `ViewModel`: **LiveData**를 사용하여 **뷰 - 모델간의 최신 데이터를 동기화**하고, http 요청을 통해 얻은 **데이터를 가공하여 저장**하였습니다.
