@@ -154,12 +154,17 @@ val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
     }
 }
 ```
+
 </br>
+
 ## 기사 키워드 검색기능 소개
 >EditText.addTextChangedListener 활용
+
 <img src ="https://user-images.githubusercontent.com/83625797/156368572-2e214826-fd36-4ed1-a21e-1a4ccc0d5677.gif" width = "500">
+
 위 활용 예제와 같이 `EditText`의 값이 변할 때마다 지속해서 결과값을 재요청해주어야 합니다. 따라서 `EditText`의 `addTextChangedListener`함수를 사용하였고, **데이터의 변경이 이루어 질때마다 새로운 뉴스 데이터를 요청**합니다.
-단, 잦은 입력으로 인한 과요청 상태를 방지하기 위해, 코루틴을 활용하여 5초간의 요청 딜레이를 주어 해당 문제를 해결합니다.
+단, **잦은 입력으로 인한 과요청 상태를 방지**하기 위해, 코루틴을 활용하여 **5초간의 요청 딜레이**를 주어 해당 문제를 해결합니다.  
+
 ```kotlin
 binding.etSearch.addTextChangedListener { editable ->
     job?.cancel()
