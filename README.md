@@ -33,7 +33,7 @@ https://newsapi.org/ 사이트의 뉴스api를 활용하여 만든 영어 뉴스
 * `Activity/Fragment`: 1 액티비티 4프래그먼트구성으로, **네비게이션 컴포넌트를 이용**하여 관리하였습니다.
 * `ViewModel`: **LiveData**를 사용하여 **뷰 - 모델간의 최신 데이터를 동기화**하고, http 요청을 통해 얻은 **데이터를 가공하여 저장**하였습니다.
 * `Model`: **Room**을 사용하여 로컬 데이터베이스에 데이터를 저장하였습니다. 
-* `Remote Data Source`: Retrofit2를 활용한 **REST Api 통신 및 JSON데이터를 객체화**하였습니다.
+* `Remote Data Source`: Retrofit2를 활용한 **클라이언트와 서버간 REST Api 통신 구현과 JSON데이터를 객체화**하였습니다.
 
 
 ## 무한 스크롤 기능 소개
