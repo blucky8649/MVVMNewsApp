@@ -91,8 +91,8 @@ val scrollListener = object : RecyclerView.OnScrollListener() {
         }
     }
 }
-
-이제 리사이클러뷰에 방금 작성했던 리스너를 적용시켜주면 됩니다.
+```
+그 다음,  리사이클러뷰에 방금 작성했던 리스너를 적용시켜주면 됩니다.
 
 ```kotlin
 private fun setupReyclerView() {
