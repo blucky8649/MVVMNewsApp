@@ -1,7 +1,6 @@
 package com.example.mvvmnewsapp.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +18,7 @@ import com.example.mvvmnewsapp.databinding.FragmentSearchNewsBinding
 import com.example.mvvmnewsapp.ui.NewsActivity
 import com.example.mvvmnewsapp.ui.NewsViewModel
 import com.example.mvvmnewsapp.util.Constants
-import com.example.mvvmnewsapp.util.Constants.Companion.SEARCH_NEWS_DELAY
+import com.example.mvvmnewsapp.util.Constants.Companion.FIVE_SECONDS_DELEY
 import com.example.mvvmnewsapp.util.Resource
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
@@ -53,7 +52,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         binding.etSearch.addTextChangedListener { editable ->
             job?.cancel()
             job = MainScope().launch {
-                delay(SEARCH_NEWS_DELAY)
+                delay(FIVE_SECONDS_DELEY)
                 editable?.let {
                     if (editable.toString().isNotEmpty()) {
                         viewModel.searchNews(editable.toString())

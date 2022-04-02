@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvmnewsapp.R
 import com.example.mvvmnewsapp.adapters.NewsAdapter
+import com.example.mvvmnewsapp.databinding.FragmentBreakingNewsBinding
 import com.example.mvvmnewsapp.ui.NewsActivity
 import com.example.mvvmnewsapp.ui.NewsViewModel
-import com.example.mvvmnewsapp.databinding.FragmentBreakingNewsBinding
 import com.example.mvvmnewsapp.util.Constants.Companion.COUNTRY
 import com.example.mvvmnewsapp.util.Constants.Companion.QUERY_PAGE_SIZE
 import com.example.mvvmnewsapp.util.Resource
@@ -30,7 +30,6 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapter
 
-    val TAG = "BreakingNewsFragment"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,7 +37,6 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         setupReyclerView()
 
         newsAdapter.setOnItemClickListener {
-            Toast.makeText(activity, "아이템 클릭됨", Toast.LENGTH_LONG).show()
             val bundle = Bundle().apply {
                 putSerializable("article", it)
             }

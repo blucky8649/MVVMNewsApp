@@ -85,9 +85,9 @@ class NewsViewModel(
                 if (breakingNewsResponse == null) {
                     breakingNewsResponse = response
                 } else {
-                    val oldArticles = breakingNewsResponse?.articles
-                    val newArticles = response.articles
-                    oldArticles?.addAll(newArticles)
+                    val oldArticles = breakingNewsResponse?.articles // 기존 데이터
+                    val newArticles = response.articles // 새로운 데이터
+                    oldArticles?.addAll(newArticles) // 새로운 데이터를 결합시켜준다.
                 }
                 return Resource.Success(breakingNewsResponse ?: response)
             }
